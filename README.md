@@ -193,7 +193,17 @@ server {
     }
 }
 ```
+### WebSocket proxying
+Do not forget the `Upgrade` header
 
+```
+    location /ws {
+        proxy_pass http://localhost:3000/ws;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+```
 
 ## Monitoring
 
